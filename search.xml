@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>leetcode-169. 多数元素</title>
+      <link href="/undefined/20514.html"/>
+      <url>/undefined/20514.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p><p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p><p>这个题目是某年的408原题，之前做的时候用的哈希表,答案好像是摩尔投票法不过当时没看懂😅</p><h2 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h2><p>规定众数的票数是1，非众数的票数是-1.由于众数的数量大于总元素个数的一半所以票数之和一定大于0.</p><p>若数组的前a个数票数之和为0，则后n-a个数的票数之和一定大于0，所以众数一定在后n-a个数中。</p><ul><li><p>设置一个候选众数 maj &#x3D; nums[0]，初始化票数和votes &#x3D; 0.</p></li><li><p>遍历数组，对于每一个元素x，若x&#x3D;&#x3D;maj则votes++。否则votes–</p></li><li><p>遍历结束后maj即为整个数组的众数</p></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int maj=nums[0],votes=0;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            if(num==maj) votes++;</span><br><span class="line">            else votes--;</span><br><span class="line">            if(votes==0) &#123;</span><br><span class="line">                maj = num;</span><br><span class="line">                votes=1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-80. 删除有序数组中的重复项 II</title>
       <link href="/undefined/4684.html"/>
       <url>/undefined/4684.html</url>
