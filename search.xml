@@ -69,8 +69,16 @@
           
           <category> leetcode </category>
           
+          <category> 面试经典150题 </category>
+          
       </categories>
       
+      
+        <tags>
+            
+            <tag> 摩尔投票 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -87,6 +95,10 @@
       <categories>
           
           <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
           
       </categories>
       
@@ -107,6 +119,10 @@
           
           <category> 算法 </category>
           
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
       </categories>
       
       
@@ -126,6 +142,10 @@
           
           <category> 算法 </category>
           
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
       </categories>
       
       
@@ -144,6 +164,10 @@
       <categories>
           
           <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
           
       </categories>
       
