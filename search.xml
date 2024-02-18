@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>leetcode-122. 买卖股票的最佳时机 II</title>
+      <link href="/undefined/33500.html"/>
+      <url>/undefined/33500.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="买卖股票的最佳时机-II"><a href="#买卖股票的最佳时机-II" class="headerlink" title="买卖股票的最佳时机 II"></a>买卖股票的最佳时机 II</h1><p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code> 表示某支股票第 <code>i</code> 天的价格。</p><p>在每一天，你可以决定是否购买和&#x2F;或出售股票。你在任何时候 <strong>最多</strong> 只能持有 <strong>一股</strong> 股票。你也可以先购买，然后在 <strong>同一天</strong> 出售。</p><p>返回 <em>你能获得的 <strong>最大</strong> 利润</em> 。</p><hr><p>刚开始我考虑的是动态规划，想不出来。在草稿纸上画出了折线图就想到了可以用队列来做，也就是用单调队列找出所有的上升子序列。</p><p>维护一个单调队列使得从队尾到队头单调递减。</p><p>初始化最大利润ans&#x3D;0</p><p>如果进队元素小于等于队尾，说明这一段上升序列结束，ans+&#x3D;队尾-队头，并清空队列，将新元素入队。</p><p>否则，将新元素入队。</p><p>循环结束后再计算一遍ans+&#x3D;队尾-队头，把最后一段上升子序列加进去。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">        q.<span class="built_in">push</span>(prices[<span class="number">0</span>]);</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;prices.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&lt;=q.<span class="built_in">back</span>())&#123;</span><br><span class="line">                ans+=q.<span class="built_in">back</span>()-q.<span class="built_in">front</span>();</span><br><span class="line">                <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) q.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            q.<span class="built_in">push</span>(prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        ans+=q.<span class="built_in">back</span>()-q.<span class="built_in">front</span>();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>很明显空间复杂度为O(n)。</p><hr><p>可以把一段上升序列等价成多段子序列，比如说第1天买入，第3天卖出可以等价为第1天买入第2天卖出，第2天再买入第三天卖出。</p><p>这样只需要维护第i天的价格和第i-1天的价格，把空间复杂度优化到了常数级别。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProfit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxp = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;prices.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(prices[i]&gt;prices[i<span class="number">-1</span>])</span><br><span class="line">                ans+=prices[i]-prices[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贪心 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-121. 买卖股票的最佳时机</title>
       <link href="/undefined/54428.html"/>
       <url>/undefined/54428.html</url>
