@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>leetcode-45. 跳跃游戏 II</title>
+      <link href="/undefined/52021.html"/>
+      <url>/undefined/52021.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="跳跃游戏-II"><a href="#跳跃游戏-II" class="headerlink" title="跳跃游戏 II"></a>跳跃游戏 II</h1><p>给定一个长度为 <code>n</code> 的 <strong>0 索引</strong>整数数组 <code>nums</code>。初始位置为 <code>nums[0]</code>。</p><p>每个元素 <code>nums[i]</code> 表示从索引 <code>i</code> 向前跳转的最大长度。换句话说，如果你在 <code>nums[i]</code> 处，你可以跳转到任意 <code>nums[i + j]</code> 处:</p><ul><li><code>0 &lt;= j &lt;= nums[i]</code> </li><li><code>i + j &lt; n</code></li></ul><p>返回到达 <code>nums[n - 1]</code> 的最小跳跃次数。生成的测试用例可以到达 <code>nums[n - 1]</code>。</p><hr><p>这个有点难度，不会写。</p><p>要求最小跳跃次数，也就是每次尽可能多走。</p><p>元素nums[i]的覆盖范围是**[i,i+nums[i]]**,也就是从i位置能跳到的位置，每次跳跃到覆盖范围最大的位置就可以保证步数最小。</p><p>设置覆盖范围的右端点为end，i&#x3D;&#x3D;end时，说明覆盖范围遍历完，跳跃次数+1.同时在遍历过程中，求出覆盖范围内的元素的最大覆盖范围，并更新end，也就是跳跃整个最大覆盖范围。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">jump</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> max_jump=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> end=nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.<span class="built_in">size</span>()==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            max_jump=<span class="built_in">max</span>(max_jump,i+nums[i]);</span><br><span class="line">            <span class="keyword">if</span>(i==end)&#123;</span><br><span class="line">                end = max_jump;</span><br><span class="line">                ans++;</span><br><span class="line">                <span class="keyword">if</span>(end&gt;=n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 贪心 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-55. 跳跃游戏</title>
       <link href="/undefined/59687.html"/>
       <url>/undefined/59687.html</url>
