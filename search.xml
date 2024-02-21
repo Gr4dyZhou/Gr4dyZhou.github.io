@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>acwing-快速排序</title>
+      <link href="/undefined/45306.html"/>
+      <url>/undefined/45306.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>快速排序有三个地方容易写错，今天终于全弄明白了。</p><p>先来看代码</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> mid=a[l+r&gt;&gt;<span class="number">1</span>];<span class="comment">//易错点1</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[--j]&gt;mid);</span><br><span class="line">        <span class="keyword">while</span>(a[++i]&lt;mid);</span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="comment">//易错点2</span></span><br><span class="line">            <span class="built_in">swap</span>(a[i],a[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">quick_sort</span>(l,j);</span><br><span class="line">    <span class="built_in">quick_sort</span>(j+<span class="number">1</span>,r);<span class="comment">//易错点3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">quick_sort</span>(<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>易错点1</li></ul><p>​这里不能写成<code>int mid=l+r&gt;&gt;1</code>,这里如果记录的是下标会出错。因为后边元素交换后，<code>a[mid]</code>就不一定等于<code>pivot</code>了</p><ul><li>易错点2</li></ul><p></p><p>​不能省略判断，<code>i</code>是有可能比<code>j</code>大的。</p><ul><li><p>易错点3</p><p>注意分界点，以<code>j</code>为分界点时，<code>pivot</code>不能取右端点，会<code>MLE</code>。因为j可能等于r<code>quick(l,j)</code>会无限分。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> acwing </category>
+          
+          <category> 算法基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 快速排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-274. H 指数</title>
       <link href="/undefined/43341.html"/>
       <url>/undefined/43341.html</url>
