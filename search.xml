@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>leetcode-274. H 指数</title>
+      <link href="/undefined/43341.html"/>
+      <url>/undefined/43341.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="H指数"><a href="#H指数" class="headerlink" title="H指数"></a>H指数</h1><p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p><p>根据维基百科上 <a href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin">h 指数的定义</a>：<code>h</code> 代表“高引用次数” ，一名科研人员的 <code>h</code> <strong>指数</strong> 是指他（她）至少发表了 <code>h</code> 篇论文，并且 <strong>至少</strong> 有 <code>h</code> 篇论文被引用次数大于等于 <code>h</code> 。如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p><hr><p>这个H指数的定义非常绕。第一次做的时候有思路，代码就是写不出来。</p><p>翻译过来就是nums[i]大于等于[i,n-1]的长度，求满足这个条件的长度最大值。</p><p>要使长度为n-i最大，则i取最小值。</p><p><img src="https://www.freeimg.cn/i/2024/02/21/65d5d8b589854.jpg"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        int n=nums.size();</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            if(nums[i]&gt;=n-i)</span><br><span class="line">                return n-i;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-45. 跳跃游戏 II</title>
       <link href="/undefined/52021.html"/>
       <url>/undefined/52021.html</url>
