@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>leetcode-238. 除自身以外数组的乘积</title>
+      <link href="/undefined/36110.html"/>
+      <url>/undefined/36110.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="除自身以外数组的乘机"><a href="#除自身以外数组的乘机" class="headerlink" title="除自身以外数组的乘机"></a>除自身以外数组的乘机</h1><p>给你一个整数数组 <code>nums</code>，返回 <em>数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积</em> 。</p><p>题目数据 <strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内。</p><p>请 <strong>不要使用除法，</strong>且在 <code>O(n)</code> 时间复杂度内完成此题。</p><hr><p>这个题最显然的解法就是把所有元素全乘起来，然后除以<code>nums[i]</code>，但是除法会出现除数为0的情况，而且题目要求不能用除法。</p><p>类似前缀和，这个题用的是前缀积。</p><p>设置前缀积数组<code>l[]</code>和后缀积<code>r[]</code>数组，分别存放<code>nums[i]</code>和<code>nums[i]</code>之后所有数的乘积（不包括<code>nums[i]</code>）。</p><p>注意，后缀积需要逆序求。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">productExceptSelf</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">l</span><span class="params">(n,<span class="number">1</span>)</span>,<span class="title">r</span><span class="params">(n,<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">            l[i]=l[i<span class="number">-1</span>]*nums[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">            r[i]=r[i+<span class="number">1</span>]*nums[i+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            ans[i]=l[i]*r[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+          <category> 面试经典150题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前缀积 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>acwing-逆序对的数量</title>
       <link href="/undefined/47575.html"/>
       <url>/undefined/47575.html</url>
