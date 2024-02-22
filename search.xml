@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>acwing-第k个数</title>
+      <link href="/undefined/17900.html"/>
+      <url>/undefined/17900.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="第k个数"><a href="#第k个数" class="headerlink" title="第k个数"></a>第k个数</h1><p>给定一个长度为 <code>n</code> 的整数数列，以及一个整数 <code>k</code>，请用快速选择算法求出数列从小到大排序后的第 <code>k</code>个数。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行包含两个整数 <code>n</code> 和 <code>k</code>。</p><p>第二行包含 <code>n</code> 个整数（所有整数均在 <code>1∼1091∼109</code> 范围内），表示整数数列。</p><h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个整数，表示数列的第 <code>k</code> 小数。</p><hr><p>最暴力的做法是把数组全部排序然后输出。</p><p>但其实可以不用全部排序，只排列一部分就能得到答案。</p><p>每趟排序后<code>pivot</code>左边的数全部小于等于<code>pivot</code>，右边的数全部大于等于<code>pivot</code>。所以每趟排序后判断<code>j</code> 和<code>k</code>的关系，决定排序哪一边。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">quick_select</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> a[l];</span><br><span class="line">    <span class="type">int</span> x=a[l+r&gt;&gt;<span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[++i]&lt;x);</span><br><span class="line">        <span class="keyword">while</span>(a[--j]&gt;x);</span><br><span class="line">        <span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(a[i],a[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(k&lt;=j+<span class="number">1</span>) <span class="keyword">return</span> <span class="built_in">quick_select</span>(l,j,k);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">quick_select</span>(j+<span class="number">1</span>,r,k);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,k;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="type">int</span> a=<span class="built_in">quick_select</span>(<span class="number">0</span>,n<span class="number">-1</span>,k);</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+          <category> 算法基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 快速选择 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>acwing-快速排序</title>
       <link href="/undefined/45306.html"/>
       <url>/undefined/45306.html</url>
