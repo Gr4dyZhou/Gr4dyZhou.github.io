@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title>acwing-逆序对的数量</title>
+      <link href="/undefined/47575.html"/>
+      <url>/undefined/47575.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="逆序对的数量"><a href="#逆序对的数量" class="headerlink" title="逆序对的数量"></a>逆序对的数量</h1><p>给定一个长度为<code> n</code>的整数数列，请你计算数列中的逆序对的数量。</p><p>逆序对的定义如下：对于数列的第 <code>i</code> 个和第 <code>j</code>个元素，如果满足 <code>i&lt;j</code>且<code> a[i]&gt;a[j]</code>，则其为一个逆序对；否则不是。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行包含整数 <code>n</code>，表示数列的长度。</p><p>第二行包含 <code>n</code> 个整数，表示整个数列。</p><h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一个整数，表示逆序对的个数。</p><h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p><code>1≤n≤100000</code>，<br>数列中的元素的取值范围 <code>[1,109]</code></p><hr><p>归并排序合并时可以判断<code>i&lt;j</code>且<code> a[i]&gt;a[j]</code>。</p><p>写递归先确定函数的返回值是什么，显然递归函数的返回值应该是逆序对的个数。</p><p>然后确定返回条件：数组只有一个元素时，逆序对个数为0，返回0.</p><p>逆序对的总个数等于两部分的逆序对之和，而每个部分的逆序对个数为mid-i+1。最后将ans返回</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> t[N];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>,i=l,j=mid+<span class="number">1</span>,k=<span class="number">0</span>;</span><br><span class="line">    ans=<span class="built_in">merge</span>(l,mid)+<span class="built_in">merge</span>(mid+<span class="number">1</span>,r);</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])&#123;</span><br><span class="line">            ans+=mid-i+<span class="number">1</span>;</span><br><span class="line">            t[k++]=a[j++];</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">else</span> t[k++]=a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid) t[k++]=a[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r) t[k++]=a[j++];</span><br><span class="line">    <span class="keyword">for</span>(i=l,j=<span class="number">0</span>;i&lt;=r;i++,j++) a[i]=t[j];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">merge</span>(<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+          <category> 算法基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>acwing-归并排序</title>
+      <link href="/undefined/25615.html"/>
+      <url>/undefined/25615.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>给定你一个长度为 <code>n</code> 的整数数列。</p><p>请你使用归并排序对这个数列按照从小到大进行排序。</p><p>并将排好序的数列按顺序输出。</p><hr><p>归并排序的思想是分治，先将数组一分为二，分为<code>[l,mid]</code>和<code>[mid+1,r]</code>重复这个操作直到分为只有一个元素，即<code>l==r</code>时<code>return</code>。</p><p>数组两两合并，由于是从只有一个元素开始返回，所以保证每次都是两个有序数组合并。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> t[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>,i=l,j=mid+<span class="number">1</span>,k=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">merge</span>(l,mid);</span><br><span class="line">    <span class="built_in">merge</span>(mid+<span class="number">1</span>,r);</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;a[j]) t[k++]=a[i++];</span><br><span class="line">        <span class="keyword">else</span> t[k++]=a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid) t[k++]=a[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r) t[k++]=a[j++];</span><br><span class="line">    <span class="keyword">for</span>(i=l,k=<span class="number">0</span>;i&lt;=r;i++,k++) a[i]=t[k];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">merge</span>(<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+          <category> 算法基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 归并排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>acwing-第k个数</title>
       <link href="/undefined/17900.html"/>
       <url>/undefined/17900.html</url>
