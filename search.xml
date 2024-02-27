@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>leetcode-135. 分发糖果</title>
+      <link href="/undefined/59039.html"/>
+      <url>/undefined/59039.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="分发糖果"><a href="#分发糖果" class="headerlink" title="分发糖果"></a>分发糖果</h1><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p><p>你需要按照以下要求，给这些孩子分发糖果：</p><ul><li>每个孩子至少分配到 <code>1</code> 个糖果。</li><li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li></ul><p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p><hr><p>初始化数组<code>vector&lt;int&gt;t(n,1)</code>存储每个孩子的糖果数量。</p><p>分两次遍历数组</p><ol><li><p>从左到右遍历数组，使得<strong>右边孩子的评分数大于左边孩子评分数，则右边孩子糖果数比左边孩子多1</strong>。</p></li><li><p>从右到左遍历数组，如果<strong>左边孩子的评分数大于右边孩子评分数</strong>，则左边孩子糖果数等于<code>max(t[i],t[i+1]+1)</code>。</p></li></ol><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">candy</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; ratings)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n=ratings.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt;<span class="built_in">t</span>(n,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ratings[i]&gt;ratings[i<span class="number">-1</span>])</span><br><span class="line">                t[i]=t[i<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-2</span>;i&gt;<span class="number">-1</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ratings[i]&gt;ratings[i+<span class="number">1</span>])</span><br><span class="line">                t[i]=<span class="built_in">max</span>(t[i+<span class="number">1</span>]+<span class="number">1</span>,t[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i:t) count+=i;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-134. 加油站</title>
       <link href="/undefined/32148.html"/>
       <url>/undefined/32148.html</url>
