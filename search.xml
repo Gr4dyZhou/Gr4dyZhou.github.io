@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>acwing-高精度加法</title>
+      <link href="/undefined/48955.html"/>
+      <url>/undefined/48955.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h1><p>给定两个正整数（不含前导 0），计算它们的和。</p><h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>给定两个正整数（不含前导 00），计算它们的和。</p><h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>共一行，包含所求的和。</p><h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p>1≤整数长度≤100000</p><hr><p>这个算法用来计算大数之间的加法。</p><p><strong>例：计算 567+28</strong></p><ul><li><p>用 a, b 两个字符串存储输入。a &#x3D; 567, b &#x3D; 28</p></li><li><p>为了将个位对齐，两个加数需要倒序存放在 <code>A</code>， <code>B</code> 两个整数数组中。 <code>A = [7, 6, 5]</code>, <code>B = [8, 2]</code></p></li><li><p>新建整数数组 <code>C</code> 保存结果，整型变量 <code>t</code> 保存进位，初始 <code>t = 0</code>.</p></li><li><p>将各个位上的数字相加，求出结果对应位上的数字和进位。</p></li><li><p>例如对个位计算： <code>A[0] + B[0] = 7 + 8 = 15</code>, 结果个位上是 <code>5</code>， 进位是 <code>1</code>. 所以<code>C[0] = 5</code>, 进位<code>t = 1</code></p></li><li><p>最后把结果数组 C 中就保存了计算倒序结果，倒序输出就是答案</p></li></ul><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">add</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp;a,vector&lt;<span class="type">int</span>&gt;&amp;b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.<span class="built_in">size</span>()&lt;b.<span class="built_in">size</span>()) <span class="keyword">return</span> <span class="built_in">add</span>(b,a);</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;c;</span><br><span class="line">    <span class="type">int</span> t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        t+=a[i];</span><br><span class="line">        <span class="keyword">if</span>(i&lt;b.<span class="built_in">size</span>()) t+=b[i];</span><br><span class="line">        c.<span class="built_in">push_back</span>(t%<span class="number">10</span>);</span><br><span class="line">        t/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(t) c.<span class="built_in">push_back</span>(t);</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; a,b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=n.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) a.<span class="built_in">push_back</span>(n[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=m.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) b.<span class="built_in">push_back</span>(m[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;c=<span class="built_in">add</span>(a,b);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=c.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) cout&lt;&lt;c[i];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 高精度 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode-151. 反转字符串中的单词</title>
       <link href="/undefined/15099.html"/>
       <url>/undefined/15099.html</url>
