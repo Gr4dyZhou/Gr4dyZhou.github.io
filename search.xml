@@ -348,9 +348,9 @@
       
         <tags>
             
-            <tag> 动态规划 </tag>
-            
             <tag> 双指针 </tag>
+            
+            <tag> 动态规划 </tag>
             
         </tags>
       
@@ -581,7 +581,7 @@
       
         <tags>
             
-            <tag> 快速选择 </tag>
+            <tag> 快速排序 </tag>
             
         </tags>
       
@@ -830,6 +830,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
       
     </entry>
     
