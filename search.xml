@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>acwing-高精度除法</title>
+      <link href="/undefined/32959.html"/>
+      <url>/undefined/32959.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="高精度除法"><a href="#高精度除法" class="headerlink" title="高精度除法"></a>高精度除法</h1><p>给定两个非负整数（不含前导 00） A，B，请你计算 A&#x2F;B 的商和余数。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>共两行，第一行包含整数 A，第二行包含整数 B。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>共两行，第一行输出所求的商，第二行输出所求余数。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤A的长度≤100000,<br>1≤B≤10000,<br>B 一定不为 0</p><h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">2</span><br></pre></td></tr></table></figure><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1</span><br></pre></td></tr></table></figure><hr><p>因为除法是从高位开始算，加减法和乘法都是从低位开始，所以除法其实不用倒序存储数据。但是为了和前边保持一致，同样采用倒序存储。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">div</span><span class="params">(vector&lt;<span class="type">int</span>&gt; a,<span class="type">int</span> b,<span class="type">int</span> &amp;r)</span></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123; <span class="comment">//从高位开始计算</span></span><br><span class="line">        r=r*<span class="number">10</span>+a[i];</span><br><span class="line">        c.<span class="built_in">push_back</span>(r/b);</span><br><span class="line">        r%=b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">reverse</span>(c.<span class="built_in">begin</span>(),c.<span class="built_in">end</span>()); <span class="comment">//计算的结果在c中本来是正序存储，所以前导零在数组前边，反转后把前导零移到后边</span></span><br><span class="line">    <span class="keyword">while</span>(c.<span class="built_in">size</span>()&gt;<span class="number">1</span>&amp;&amp;c.<span class="built_in">back</span>()==<span class="number">0</span>) c.<span class="built_in">pop_back</span>();</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; n;</span><br><span class="line">    <span class="type">int</span> r=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=a.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) n.<span class="built_in">push_back</span>(a[i]-<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; c=<span class="built_in">div</span>(n,b,r);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=c.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) cout&lt;&lt;c[i];</span><br><span class="line">    cout&lt;&lt;endl&lt;&lt;r;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 高精度 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>acwing-高精度乘法</title>
       <link href="/undefined/2611.html"/>
       <url>/undefined/2611.html</url>
