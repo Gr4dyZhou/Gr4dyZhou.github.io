@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>acwing-子矩阵的和</title>
+      <link href="/undefined/39961.html"/>
+      <url>/undefined/39961.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="子矩阵的和"><a href="#子矩阵的和" class="headerlink" title="子矩阵的和"></a>子矩阵的和</h1><p>输入一个 n 行 m 列的整数矩阵，再输入 q 个询问，每个询问包含四个整数 x1,y1,x2,y2，表示一个子矩阵的左上角坐标和右下角坐标。</p><p>对于每个询问输出子矩阵中所有数的和。</p><h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含三个整数 n，m，q。</p><p>接下来 n 行，每行包含 m 个整数，表示整数矩阵。</p><p>接下来 q 行，每行包含四个整数 x1,y1,x2,y2，表示一组询问。</p><h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>共 q 行，每行输出一个询问的结果。</p><h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n,m≤1000,<br>1≤q≤200000,<br>1≤x1≤x2≤n,<br>1≤y1≤y2≤m,<br>−1000≤矩阵内元素的值≤1000</p><h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 4 3</span><br><span class="line">1 7 2 4</span><br><span class="line">3 6 2 8</span><br><span class="line">2 1 2 3</span><br><span class="line">1 1 2 2</span><br><span class="line">2 1 3 4</span><br><span class="line">1 3 3 4</span><br></pre></td></tr></table></figure><h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">17</span><br><span class="line">27</span><br><span class="line">21</span><br></pre></td></tr></table></figure><hr><p>二维版的前缀和</p><p><img src="https://www.freeimg.cn/i/2024/04/11/6617424daea56.png" alt="子矩阵的和"></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1005</span>;</span><br><span class="line"><span class="type">int</span> a[N][N];</span><br><span class="line"><span class="type">int</span> s[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,m,q;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m&gt;&gt;q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            cin&gt;&gt;a[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            s[i][j]=s[i<span class="number">-1</span>][j]+s[i][j<span class="number">-1</span>]+a[i][j]-s[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="type">int</span> x1,y1,x2,y2;</span><br><span class="line">        cin&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2;</span><br><span class="line">        <span class="type">int</span> a=s[x2][y2]-s[x2][y1<span class="number">-1</span>]-s[x1<span class="number">-1</span>][y2]+s[x1<span class="number">-1</span>][y1<span class="number">-1</span>];</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> acwing </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前缀和 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>acwing-前缀和</title>
       <link href="/undefined/21837.html"/>
       <url>/undefined/21837.html</url>
