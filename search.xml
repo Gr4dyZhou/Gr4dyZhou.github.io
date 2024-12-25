@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>螺旋矩阵 II</title>
+      <link href="/undefined/61875.html"/>
+      <url>/undefined/61875.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="螺旋矩阵-II"><a href="#螺旋矩阵-II" class="headerlink" title="螺旋矩阵 II"></a>螺旋矩阵 II</h1><p>给你一个正整数 <code>n</code> ，生成一个包含 <code>1</code> 到 <code>n2</code> 所有元素，且元素按顺时针顺序螺旋排列的 <code>n x n</code> 正方形矩阵 <code>matrix</code> 。</p><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" alt="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[[1,2,3],[8,9,4],[7,6,5]]</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= n &lt;= 20</code></li></ul><hr><p>经典模拟题。做过好多遍了，每次写都忘。</p><p>定义两个数组，模拟移动方向 </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] dx = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>&#125;;</span><br><span class="line"><span class="type">int</span>[] dy = &#123;<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//d从0到3分别代表向右下上左四个方向移动</span></span><br><span class="line"><span class="comment">//改变方向的条件是撞墙或者已经填好数</span></span><br></pre></td></tr></table></figure><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="type">int</span>[] dx = &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="type">int</span>[] dy = &#123;<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="type">int</span> [][] matrix = <span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">        <span class="type">int</span> x=<span class="number">0</span>,y=<span class="number">0</span>,d=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n*n;i++)&#123;</span><br><span class="line">            matrix[x][y]=i;</span><br><span class="line">            <span class="type">int</span> next_x=x+dx[d];</span><br><span class="line">            <span class="type">int</span> next_y=y+dy[d];</span><br><span class="line">            <span class="keyword">if</span>(next_x&lt;<span class="number">0</span>||next_x&gt;=n||next_y&lt;<span class="number">0</span>||next_y&gt;=n||matrix[next_x][next_y]!=<span class="number">0</span>)&#123;</span><br><span class="line">                d=(d+<span class="number">1</span>)%<span class="number">4</span>;</span><br><span class="line">                next_x=x+dx[d];</span><br><span class="line">                next_y=y+dy[d];</span><br><span class="line">            &#125;</span><br><span class="line">            x=next_x;</span><br><span class="line">            y=next_y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> matrix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>二分查找</title>
       <link href="/undefined/42877.html"/>
       <url>/undefined/42877.html</url>
