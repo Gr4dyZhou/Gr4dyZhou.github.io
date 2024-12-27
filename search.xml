@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title>两个数组的交集</title>
+      <link href="/undefined/7002.html"/>
+      <url>/undefined/7002.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="两个数组的交集"><a href="#两个数组的交集" class="headerlink" title="两个数组的交集"></a>两个数组的交集</h1><p>给定两个数组 <code>nums1</code> 和 <code>nums2</code> ，返回 <em>它们的</em> </p><p><em>交集</em></p><p> 。输出结果中的每个元素一定是 <strong>唯一</strong> 的。我们可以 <strong>不考虑输出结果的顺序</strong> 。</p><p><strong>示例 1：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [1,2,2,1], nums2 = [2,2]</span><br><span class="line">输出：[2]</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]</span><br><span class="line">输出：[9,4]</span><br><span class="line">解释：[4,9] 也是可通过的</span><br></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= nums1.length, nums2.length &lt;= 1000</code></li><li><code>0 &lt;= nums1[i], nums2[i] &lt;= 1000</code></li></ul><hr><p>设置一个布尔数组，遍历数组1，将出现的数字标记为真。设置一个集合，遍历数组2，将布尔数组中为真的数加入集合</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] intersection(<span class="type">int</span>[] nums1, <span class="type">int</span>[] nums2) &#123;</span><br><span class="line">        <span class="type">boolean</span>[] table = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">1001</span>];</span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;nums1.length;i++)&#123;</span><br><span class="line">            table[nums1[i]]=<span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums2.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(table[nums2[i]])&#123;</span><br><span class="line">                set.add(nums2[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] res = <span class="keyword">new</span> <span class="title class_">int</span>[set.size()];</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num:set)&#123;</span><br><span class="line">            res[i++]=num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 哈希 </tag>
+            
+            <tag> 集合 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>有效的字母异位词</title>
+      <link href="/undefined/23964.html"/>
+      <url>/undefined/23964.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="有效的字母异位词"><a href="#有效的字母异位词" class="headerlink" title="有效的字母异位词"></a>有效的字母异位词</h1><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，编写一个函数来判断 <code>t</code> 是否是 <code>s</code> 的 </p><p>字母异位词</p><p>。</p><p><strong>示例 1:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure><p><strong>示例 2:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;rat&quot;, t = &quot;car&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure><p><strong>提示:</strong></p><ul><li><code>1 &lt;= s.length, t.length &lt;= 5 * 104</code></li><li><code>s</code> 和 <code>t</code> 仅包含小写字母</li></ul><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAnagram</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length()!=t.length()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">int</span>[] table = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            table[s.charAt(i)-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;t.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(--table[t.charAt(i)-<span class="string">&#x27;a&#x27;</span>]&lt;<span class="number">0</span>)&#123; <span class="comment">//如果两个单词长度一样，一个字母出现次数多，一定会有另一个字母出现次数少，所以只要不满足条件相减一定会有</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 哈希 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>环形链表II</title>
       <link href="/undefined/41194.html"/>
       <url>/undefined/41194.html</url>
