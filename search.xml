@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>赎金信</title>
+      <link href="/undefined/58228.html"/>
+      <url>/undefined/58228.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h1><p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p><p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p><p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p><p><strong>示例 1：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：ransomNote = &quot;a&quot;, magazine = &quot;b&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;ab&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;aab&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 105</code></li><li><code>ransomNote</code> 和 <code>magazine</code> 由小写英文字母组成</li></ul><hr><p>这题很像上一道有效字母的异位词。</p><ul><li>使用哈希表记录<code>ransomNote</code>中每个字母出现的次数</li><li>遍历<code>magazine</code>，如果发现该字母在<code>ransomNote</code>中出现过,将哈希表中对应次数减一，未完成的字母数减一</li><li>如果字母全部处理完，返回<code>true</code>,否则返回<code>false</code></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canConstruct</span><span class="params">(String ransomNote, String magazine)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> ransomNote.length();</span><br><span class="line">        <span class="type">int</span>[] table = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            table[ransomNote.charAt(i)-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;magazine.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(table[magazine.charAt(i)-<span class="string">&#x27;a&#x27;</span>]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                n--;</span><br><span class="line">                table[magazine.charAt(i)-<span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n==<span class="number">0</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> leetcode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 哈希 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>两数之和</title>
       <link href="/undefined/53518.html"/>
       <url>/undefined/53518.html</url>
