@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>分布式 | 面试资料</title><meta name="author" content="范小勤"><meta name="copyright" content="范小勤"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分布式1.分布式理论1.CAP 理论1.什么时候CAP?CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。 在理论计算机科学中，CAP 定理（CAP theorem）指出对于一个分布式系统来说，当设计读写操作时，只能同时满足以下三点中的两个：  一致性(Consistency)是指更新操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式">
+<meta property="og:url" content="http://example.com/undefined/41895.html">
+<meta property="og:site_name" content="面试资料">
+<meta property="og:description" content="分布式1.分布式理论1.CAP 理论1.什么时候CAP?CAP 也就是 Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性） 这三个单词首字母组合。 在理论计算机科学中，CAP 定理（CAP theorem）指出对于一个分布式系统来说，当设计读写操作时，只能同时满足以下三点中的两个：  一致性(Consistency)是指更新操">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/favicon.png">
+<meta property="article:published_time" content="2025-01-31T13:20:01.000Z">
+<meta property="article:modified_time" content="2025-01-31T13:27:41.072Z">
+<meta property="article:author" content="范小勤">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/favicon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/undefined/41895.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '分布式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-31 21:27:41'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">127</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="面试资料"><span class="site-name">面试资料</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">分布式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-31T13:20:01.000Z" title="发表于 2025-01-31 21:20:01">2025-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-31T13:27:41.072Z" title="更新于 2025-01-31 21:27:41">2025-01-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%AB%E8%82%A1%E6%96%87/">八股文</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="分布式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1><h1 id="1-分布式理论"><a href="#1-分布式理论" class="headerlink" title="1.分布式理论"></a>1.分布式理论</h1><h2 id="1-CAP-理论"><a href="#1-CAP-理论" class="headerlink" title="1.CAP 理论"></a>1.CAP 理论</h2><h3 id="1-什么时候CAP"><a href="#1-什么时候CAP" class="headerlink" title="1.什么时候CAP?"></a>1.什么时候CAP?</h3><p><strong>CAP</strong> 也就是 <strong>Consistency（一致性）</strong>、<strong>Availability（可用性）</strong>、<strong>Partition Tolerance（分区容错性）</strong> 这三个单词首字母组合。</p>
+<p>在理论计算机科学中，CAP 定理（CAP theorem）指出对于一个分布式系统来说，当设计读写操作时，只能同时满足以下三点中的两个：</p>
+<ul>
+<li>一致性(Consistency)是指更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致(强一致性)，不能存在中间状态。</li>
+<li>可用性(Availability) 是指系统提供的服务必须一直处于可用的状态，对于用户的每一个操作请求总是能够在有限的时间内返回结果。</li>
+<li>分区容错性(Partition tolerance) 是指分布式系统在遇到任何网络分区故障时，仍然需要能够保证对外提供满足一致性和可用性的服务，除非是整个网络环境都发生了故障。</li>
+</ul>
+<h3 id="2-为什么分布式系统中无法同时保证一致性和可用性？"><a href="#2-为什么分布式系统中无法同时保证一致性和可用性？" class="headerlink" title="2.为什么分布式系统中无法同时保证一致性和可用性？"></a>2.为什么分布式系统中无法同时保证一致性和可用性？</h3><p>首先一个前提，对于分布式系统而言，分区容错性是一个最基本的要求，因此基本上我们在设计分布式系统的时候只能从一致性（C）和可用性（A）之间进行取舍。</p>
+<p>如果保证了一致性（C）：对于节点N1和N2，当往N1里写数据时，N2上的操作必须被暂停，只有当N1同步数据同步到N2时才能对N2进行读写请求，在N2被暂停操作期间客户端提交的请求会收到失败或超时。显然，这与可用性是相悖的。</p>
+<p>如果保证了可用性（A）：那就不能暂停N2的读写操作，但同时N1在写数据的话，这就违背了一致性的要求。</p>
+<h3 id="3-权衡"><a href="#3-权衡" class="headerlink" title="3.权衡"></a>3.权衡</h3><p>在分布式系统中，分区容忍性必不可少，因为需要总是假设网络是不可靠的。因此，CAP 理论实际上是要在可用性和一致性之间做权衡。</p>
+<p>可用性和一致性往往是冲突的，很难使它们同时满足。在多个节点之间进行数据同步时，</p>
+<ul>
+<li>为了保证一致性（CP），不能访问未同步完成的节点，也就失去了部分可用性；</li>
+<li>为了保证可用性（AP），允许读取所有节点的数据，但是数据可能不一致。</li>
+</ul>
+<p>最终一致思想：各分支事务分别执行并提交，如果有不一致的情况，再想办法恢复数据（AP） 强一致思想：各分支事务执行完业务不要提交，等待彼此结果。而后统一提交或回滚（CP）</p>
+<h2 id="2-BASE理论"><a href="#2-BASE理论" class="headerlink" title="2.BASE理论"></a>2.BASE理论</h2><p>BASE 是基本可用（Basically Available）、软状态（Soft State）和最终一致性（Eventually Consistent）三个短语的缩写。</p>
+<p>BASE是CAP理论中<strong>AP方案</strong>的延伸，核心思想是即使无法做到强一致性（StrongConsistency，CAP的一致性就是强一致性），但应用可以采用适合的方式达到最终一致性（Eventual Consitency）。它的思想包含三方面：</p>
+<ul>
+<li>1、Basically Available（基本可用）：基本可用是指分布式系统在出现不可预知的故障的时候，允许损失部分可用性，但不等于系统不可用。</li>
+<li>2、Soft state（软状态）：即是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。</li>
+<li>3、Eventually consistent（最终一致性）：强调系统中所有的数据副本，在经过一段时间的同步后，最终能够达到一个一致的状态。其本质是需要系统保证最终数据能够达到一致，而不需要实时保证系统数据的强一致性。</li>
+</ul>
+<h1 id="2-分布式一致性算法"><a href="#2-分布式一致性算法" class="headerlink" title="2.分布式一致性算法"></a>2.分布式一致性算法</h1><h2 id="1-Paxos算法"><a href="#1-Paxos算法" class="headerlink" title="1.Paxos算法"></a>1.Paxos算法</h2><p>用于达成共识性问题，即对多个节点产生的值，该算法能保证只选出唯一一个值。</p>
+<p>主要有三类节点：</p>
+<ul>
+<li>提议者（Proposer）：提议一个值；</li>
+<li>接受者（Acceptor）：对每个提议进行投票；</li>
+<li>告知者（Learner）：被告知投票的结果，不参与投票过程。</li>
+</ul>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>Paxos算法的流程是一个两阶段的过程，包括准备（Prepare）阶段和接受（Accept）阶段。</p>
+<ul>
+<li><strong>准备阶段</strong>：</li>
+</ul>
+<ol>
+<li><strong>提案编号选择</strong>：Proposer选择一个提案编号N，这个编号必须是全局唯一且递增的，可以使用时间戳加服务器ID来生成。</li>
+<li><strong>发送Prepare请求</strong>：Proposer向半数以上的Acceptor发送编号为N的Prepare请求。</li>
+<li><strong>响应处理</strong>：Acceptor在收到Prepare请求后，如果它没有收到更高编号的Prepare请求，就会承诺不再接受更低编号的提案，并回应Proposer。</li>
+</ol>
+<ul>
+<li><strong>接受阶段</strong>：</li>
+</ul>
+<ol>
+<li><strong>发送Accept请求</strong>：当Proposer收到多数Acceptor对Prepare请求的响应后，它将发送一个携带提案内容和提案编号N的Accept请求给所有Acceptor。</li>
+<li><strong>接受提案</strong>：Acceptor在收到Accept请求后，如果该请求的提案编号大于或等于它已经响应的Prepare请求中的最大编号，那么它就会接受这个提案。</li>
+<li><strong>学习结果</strong>：一旦提案被多数Acceptor接受，该提案就被认为是选定的，Learner可以从Acceptor那里获取并学习这个决策结果。</li>
+</ol>
+<p>总的来说，Paxos算法通过这两个阶段的交互，确保了即使在部分节点或网络出现问题的情况下，分布式系统也能够就某个值达成一致性。这个过程需要满足一定的条件，以确保最终能够选出一个提案。</p>
+<h2 id="2-Raft算法"><a href="#2-Raft算法" class="headerlink" title="2.Raft算法"></a>2.Raft算法</h2><p>Raft算法是一种<strong>用于管理多副本状态机的日志复制的共识算法</strong>。</p>
+<p><strong>Raft算法的流程包括领导者选举、日志复制和安全性保障等关键步骤</strong>。</p>
+<p>以下是对Raft算法流程的详细阐述：</p>
+<ol>
+<li><strong>领导者选举（Leader Election）</strong>：</li>
+</ol>
+<ul>
+<li>在Raft中，时间被分为任期（Term），每个任期开始时都会进行领导者选举。</li>
+<li>如果没有领导者或领导者出现故障，所有节点都有可能成为候选人（Candidate）并开始新的选举。</li>
+<li>候选人通过向其他节点发送投票请求来争取成为领导者，如果得到多数派的投票，则该节点将成为领导者。</li>
+</ul>
+<ol>
+<li><strong>日志复制（Log Replication）</strong>：</li>
+</ol>
+<ul>
+<li>当领导者选出后，领导者负责处理客户端请求，每个请求都会被领导者以日志条目的形式记录下来。</li>
+<li>领导者然后将这些日志条目同步到集群中的其他节点，也就是跟从者（Follower）。</li>
+<li>跟从者接收到日志条目后将其写入自己的日志中，然后向领导者确认。一旦领导者收到多数跟从者的确认，该日志条目就被认为已经提交，领导者随后将通知客户端操作成功，并推进其日志中的commit index，即可以应用到状态机中的索引位置。</li>
+</ul>
+<ol>
+<li><strong>安全性（Safety）</strong>：</li>
+</ol>
+<ul>
+<li>Raft通过一系列规则确保了系统的安全性，即使在出现网络延迟、分区或节点失效等情况下也不会导致数据不一致的问题。</li>
+<li>例如，Raft使用心跳机制来判断领导者是否仍然有效，如果跟从者在一定时间内没有收到领导者的消息，它们会认为领导者可能已经崩溃，并开始新一轮的领导者选举过程。</li>
+</ul>
+<ol>
+<li><strong>日志压缩（Log Compaction）</strong>：</li>
+</ol>
+<ul>
+<li>为了优化存储空间的使用，Raft支持日志压缩功能。一旦日志条目被安全地复制到大多数节点上，并且应用到了各个节点的状态机之后，这些条目就可以被删除以释放空间。</li>
+</ul>
+<ol>
+<li><strong>成员变更（Membership Change）</strong>：</li>
+</ol>
+<ul>
+<li>Raft还提供了一种机制来支持集群成员的动态变更，即在不影响系统一致性的情况下增加或移除节点。</li>
+</ul>
+<p>综上所述，Raft算法通过上述流程管理多副本状态机的日志复制，实现了分布式系统中的强一致性和高容错性。它以其相对简单和易于实现的特点，在业界得到了广泛的应用与认可。</p>
+<h1 id="3-分布式ID"><a href="#3-分布式ID" class="headerlink" title="3.分布式ID"></a>3.分布式ID</h1><h2 id="1-为什么需要分布式ID"><a href="#1-为什么需要分布式ID" class="headerlink" title="1.为什么需要分布式ID"></a>1.为什么需要分布式ID</h2><p>传统的单体架构的时候，我们基本是单库然后业务单表的结构。每个业务表的ID一般我们都是从1增，通过AUTO_INCREMENT&#x3D;1设置自增起始值，但是在分布式服务架构模式下分库分表的设计，使得多个库或多个表存储相同的业务数据。这种情况根据数据库的自增ID就会产生相同ID的情况，不能保证主键的唯一性。我们就需要分布式ID为不同的数据节点生成全局唯一主键</p>
+<h2 id="2-分布式-ID-需要满足哪些要求"><a href="#2-分布式-ID-需要满足哪些要求" class="headerlink" title="2.分布式 ID 需要满足哪些要求?"></a>2.分布式 ID 需要满足哪些要求?</h2><p>分布式 ID 作为分布式系统中必不可少的一环，很多地方都要用到分布式 ID。</p>
+<p>一个最基本的分布式 ID 需要满足下面这些要求：</p>
+<ul>
+<li><strong>全局唯一</strong>：ID 的全局唯一性肯定是首先要满足的！</li>
+<li><strong>高性能</strong>：分布式 ID 的生成速度要快，对本地资源消耗要小。</li>
+<li><strong>高可用</strong>：生成分布式 ID 的服务要保证可用性无限接近于 100%。</li>
+<li><strong>方便易用</strong>：拿来即用，使用方便，快速接入！</li>
+</ul>
+<p>除了这些之外，一个比较好的分布式 ID 还应保证：</p>
+<ul>
+<li><strong>安全</strong>：ID 中不包含敏感信息。</li>
+<li><strong>有序递增</strong>：如果要把 ID 存放在数据库的话，ID 的有序性可以提升数据库写入速度。并且，很多时候 ，我们还很有可能会直接通过 ID 来进行排序。</li>
+<li><strong>有具体的业务含义</strong>：生成的 ID 如果能有具体的业务含义，可以让定位问题以及开发更透明化（通过 ID 就能确定是哪个业务）。</li>
+<li><strong>独立部署</strong>：也就是分布式系统单独有一个发号器服务，专门用来生成分布式 ID。这样就生成 ID 的服务可以和业务相关的服务解耦。不过，这样同样带来了网络调用消耗增加的问题。总的来说，如果需要用到分布式 ID 的场景比较多的话，独立部署的发号器服务还是很有必要的。</li>
+</ul>
+<h2 id="3-分布式-ID-常见解决方案"><a href="#3-分布式-ID-常见解决方案" class="headerlink" title="3.分布式 ID 常见解决方案"></a>3.分布式 ID 常见解决方案</h2><p>分布式 ID 常见解决方案有以下几种：</p>
+<ol>
+<li>数据库自增 ID：在分布式系统中，每个节点都从数据库中获取一个唯一的自增 ID。这种方式实现简单，但存在单点故障风险，且在高并发场景下性能较差。</li>
+<li>UUID：使用 UUID（通用唯一识别码）作为分布式 ID，可以保证全局唯一性。但 UUID 过长(128位)，存储和传输效率较低。</li>
+<li>雪花算法：Twitter 开源的分布式 ID 生成算法，基于时间戳、机器 ID 和序列号生成唯一 ID。实现简单，性能高效，但存在时间回拨问题。</li>
+<li>美团 Leaf：美团开源的分布式 ID 生成器，基于 Snowflake 算法改进，解决了时间回拨问题，支持自定义位数。</li>
+<li>百度 UidGenerator：百度开源的分布式 ID 生成器，基于 Snowflake 算法改进，解决了时间回拨问题，支持自定义位数。</li>
+<li>Flicker IdWorker：Flicker 开源的分布式 ID 生成器，基于 MySQL 数据库实现，通过预分配策略生成唯一 ID。性能较高，但依赖数据库。</li>
+<li>MongoDB ObjectId：MongoDB 数据库中的 ObjectId 可以作为分布式 ID，由时间戳、机器 ID、进程 ID 和计数器组成。但依赖于 MongoDB 数据库。</li>
+<li>Redis 生成 ID：利用 Redis 的原子操作命令（如 INCRBY）生成分布式 ID。性能较高，但依赖于 Redis 数据库。</li>
+</ol>
+<h4 id="比较uuid和雪花算法"><a href="#比较uuid和雪花算法" class="headerlink" title="比较uuid和雪花算法"></a>比较uuid和雪花算法</h4><p><strong>UUID和雪花算法各有其优势和适用场景，它们在分布式系统中生成唯一标识符的方式存在差异</strong>。具体如下：</p>
+<ul>
+<li><strong>UUID的特点</strong>：</li>
+</ul>
+<ol>
+<li>适用于非分布式系统或对顺序性要求不高的场合。</li>
+<li>生成的是32位随机字符串，确保了全局唯一性。</li>
+<li>由于是随机生成，所以不保证ID的有序性。</li>
+<li>UUID的空间占用相对较大。</li>
+</ol>
+<ul>
+<li><strong>雪花算法的特点</strong>：</li>
+</ul>
+<ol>
+<li>适用于分布式系统，能够生成递增且趋势有序的主键ID。</li>
+<li>生成的ID是数字组成，最大64位，比UUID更有序且存储空间更小。</li>
+<li>通过时间戳+随机数+服务器标记的组合确保了全局唯一性和趋势递增性。</li>
+<li>雪花算法能够在不依赖数据库的情况下由编程语言直接生成，适合分布式场景。</li>
+</ol>
+<p>在实际应用场景中，如果需要保证ID的顺序性和趋势递增，或者希望能够通过ID直观地看出数据的生成顺序，那么雪花算法更为合适。而如果对ID的顺序性没有特别要求，只需要保证全局唯一性，那么UUID可能是一个更简单的选择。</p>
+<p>总的来说，UUID和雪花算法都是解决分布式系统中生成唯一标识符的有效方法，它们的选择取决于具体的应用需求和场景。</p>
+<h1 id="4-分布式锁"><a href="#4-分布式锁" class="headerlink" title="4.分布式锁"></a>4.分布式锁</h1><h2 id="1-为什么需要分布式锁？"><a href="#1-为什么需要分布式锁？" class="headerlink" title="1.为什么需要分布式锁？"></a>1.为什么需要分布式锁？</h2><p>在多线程环境中，如果多个线程同时访问共享资源（例如商品库存、外卖订单），会发生数据竞争，可能会导致出现脏数据或者系统问题，威胁到程序的正常运行。</p>
+<p>举个例子，假设现在有 100 个用户参与某个限时秒杀活动，每位用户限购 1 件商品，且商品的数量只有 3 个。如果不对共享资源进行互斥访问，就可能出现以下情况：</p>
+<ul>
+<li>线程 1、2、3 等多个线程同时进入抢购方法，每一个线程对应一个用户。</li>
+<li>线程 1 查询用户已经抢购的数量，发现当前用户尚未抢购且商品库存还有 1 个，因此认为可以继续执行抢购流程。</li>
+<li>线程 2 也执行查询用户已经抢购的数量，发现当前用户尚未抢购且商品库存还有 1 个，因此认为可以继续执行抢购流程。</li>
+<li>线程 1 继续执行，将库存数量减少 1 个，然后返回成功。</li>
+<li>线程 2 继续执行，将库存数量减少 1 个，然后返回成功。</li>
+<li>此时就发生了超卖问题，导致商品被多卖了一份。</li>
+</ul>
+<h2 id="2-分布式锁应该具备哪些条件？"><a href="#2-分布式锁应该具备哪些条件？" class="headerlink" title="2.分布式锁应该具备哪些条件？"></a>2.分布式锁应该具备哪些条件？</h2><p>一个最基本的分布式锁需要满足：</p>
+<ul>
+<li><strong>互斥</strong>：任意一个时刻，锁只能被一个线程持有。</li>
+<li><strong>高可用</strong>：锁服务是高可用的，当一个锁服务出现问题，能够自动切换到另外一个锁服务。并且，即使客户端的释放锁的代码逻辑出现问题，锁最终一定还是会被释放，不会影响其他线程对共享资源的访问。这一般是通过超时机制实现的。</li>
+<li><strong>可重入</strong>：一个节点获取了锁之后，还可以再次获取锁。</li>
+</ul>
+<p>除了上面这三个基本条件之外，一个好的分布式锁还需要满足下面这些条件：</p>
+<ul>
+<li><strong>高性能</strong>：获取和释放锁的操作应该快速完成，并且不应该对整个系统的性能造成过大影响。</li>
+<li><strong>非阻塞</strong>：如果获取不到锁，不能无限期等待，避免对系统正常运行造成影响。</li>
+</ul>
+<h2 id="3-分布式锁的常见实现方式"><a href="#3-分布式锁的常见实现方式" class="headerlink" title="3.分布式锁的常见实现方式"></a>3.分布式锁的常见实现方式</h2><p>分布式锁的常见实现方式包括<strong>基于缓存、数据库和Zookeeper</strong>等。具体如下：</p>
+<ol>
+<li><strong>基于缓存实现分布式锁</strong>：<ul>
+<li>利用Redis的<code>SETNX</code>（SET If Not eXists）和<code>SETEX</code>（SET with EXpiration）命令来实现。<code>SETNX</code>用于在键不存在时设置值，<code>SETEX</code>用于设置带过期时间的键值对。这种方式简单高效，但在Redis集群模式下需要考虑一致性问题。</li>
+</ul>
+</li>
+<li><strong>基于数据库实现分布式锁</strong>：<ul>
+<li>可以通过在数据库中创建一个专门的锁表，使用<code>insert</code>和<code>delete</code>操作来加锁和解锁。这种方式操作简单，易于理解，但性能开销较大，可能不适合高并发场景。此外，还需要考虑锁超时和主从备份等问题。</li>
+</ul>
+</li>
+<li><strong>基于Zookeeper实现分布式锁</strong>：<ul>
+<li>Zookeeper是一个分布式协调服务，它通过创建临时节点（EPHEMERAL nodes）的方式来实现分布式锁。客户端可以在Zookeeper中创建一个临时节点，当节点创建成功时，客户端就获得了锁。其他客户端如果尝试创建相同路径的节点则会失败，从而等待锁释放。Zookeeper能够保证高可用性和一致性，适合对锁的安全性要求较高的场景。</li>
+</ul>
+</li>
+</ol>
+<p>在选择分布式锁的实现方式时，需要根据具体的业务需求和技术架构来决定。例如，如果业务对锁的性能要求极高，可能会优先考虑基于缓存的实现；如果业务对锁的安全性和一致性要求较高，则可能会选择基于Zookeeper的实现。此外，还需要考虑系统的可扩展性、容错性以及维护成本等因素。</p>
+<h1 id="5-分布式事务"><a href="#5-分布式事务" class="headerlink" title="5.分布式事务"></a>5.分布式事务</h1><h2 id="1-什么是分布式事务？"><a href="#1-什么是分布式事务？" class="headerlink" title="1.什么是分布式事务？"></a>1.什么是分布式事务？</h2><p>指事务的操作位于不同的节点上，需要保证事务的 ACID 特性。</p>
+<p>例如在下单场景下，库存和订单如果不在同一个节点上，就涉及分布式事务。</p>
+<p>分布式锁和分布式事务区别：</p>
+<ul>
+<li>锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。</li>
+<li>而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行</li>
+</ul>
+<h2 id="2-分布式事务解决方案"><a href="#2-分布式事务解决方案" class="headerlink" title="2.分布式事务解决方案"></a>2.分布式事务解决方案</h2><p>分布式常见的实现方案有 <strong>2PC</strong>、<strong>3PC</strong>、<strong>TCC</strong>、<strong>本地消息表</strong>、<strong>MQ消息事务</strong>、<strong>最大努力通知</strong>、<strong>SAGA事务</strong> 等等。</p>
+<h3 id="1-两阶段提交（2PC）"><a href="#1-两阶段提交（2PC）" class="headerlink" title="1.两阶段提交（2PC）"></a>1.两阶段提交（2PC）</h3><p>两阶段提交（2PC）：这是最常见的分布式事务解决方案，分为准备阶段和提交阶段。在准备阶段，协调者询问所有参与者是否准备好提交事务，如果所有参与者都回答“是”，则进入提交阶段，协调者通知所有参与者提交事务；如果有任何一个参与者回答“否”，则协调者通知所有参与者回滚事务。这种方法的缺点是协调者可能会出现单点故障。</p>
+<p>需要注意的是，2PC的主要目的是确保分布式系统中的所有节点在事务提交时能够达成一致性。它通过协调者和参与者之间的通信来实现这一点，从而保证了事务的原子性和一致性。</p>
+<h4 id="2PC的优点和缺点"><a href="#2PC的优点和缺点" class="headerlink" title="2PC的优点和缺点"></a>2PC的优点和缺点</h4><p><strong>优点</strong>：两阶段提交（2PC）的优点主要包括<strong>原子性、简单性</strong>。</p>
+<p>两阶段提交协议的设计初衷是在分布式系统中实现事务的一致性，确保所有节点在事务提交时能够达成共同的决定。这种协议的核心优点在于其<strong>保证原子性</strong>，即事务要么在所有相关节点上全部成功提交，要么全部失败回滚，从而避免了因为部分成功而导致的数据不一致问题。另外，2PC的优点还体现在它的<strong>简单性</strong>上，由于其原理和实现相对直观，使得它在分布式系统中容易理解和部署。</p>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li>单点问题：事务管理器在整个流程中扮演的角色很关键，如果其宕机，比如在第一阶段已经完成，在第二阶段正准备提交的时候事务管理器宕机，资源管理器就会一直阻塞，导致数据库无法使用。</li>
+<li>同步阻塞：在准备就绪之后，资源管理器中的资源一直处于阻塞，直到提交完成，释放资源。</li>
+<li>数据不一致：两阶段提交协议虽然为分布式数据强一致性所设计，但仍然存在数据不一致性的可能，比如在第二阶段中，假设协调者发出了事务commit的通知，但是因为网络问题该通知仅被一部分参与者所收到并执行了commit操作，其余的参与者则因为没有收到通知一直处于阻塞状态，这时候就产生了数据的不一致性。</li>
+</ul>
+<h4 id="XA协议"><a href="#XA协议" class="headerlink" title="XA协议"></a>XA协议</h4><p>在这个协议里，有三个角色：</p>
+<ul>
+<li><strong>AP（Application）</strong>：应用系统（服务）</li>
+<li><strong>TM（Transaction Manager）</strong>：事务管理器（全局事务管理）</li>
+<li><strong>RM（Resource Manager）</strong>：资源管理器（数据库）</li>
+</ul>
+<p>XA协议采用<strong>两阶段提交</strong>方式来管理分布式事务。XA接口提供资源管理器与事务管理器之间进行通信的标准接口。</p>
+<p>两阶段提交的思路可以概括为：参与者将操作成败通知协调者，再由协调者根据所有参与者的反馈情况决定各参与者是否要提交操作还是回滚操作。</p>
+<h3 id="2-三阶段提交（3PC）"><a href="#2-三阶段提交（3PC）" class="headerlink" title="2.三阶段提交（3PC）"></a>2.三阶段提交（3PC）</h3><p>三阶段提交（<code>3PC</code>）是二阶段提交（<code>2PC</code>）的一种改进版本 ，为解决两阶段提交协议的单点故障和同步阻塞问题。</p>
+<p>三阶段提交包括询问阶段、预提交阶段和提交阶段。</p>
+<p>在询问阶段，协调者询问所有参与者是否准备好提交事务；在预提交阶段，协调者通知所有参与者预提交事务，并等待所有参与者的响应；在提交阶段，协调者根据所有参与者的响应决定是提交还是回滚事务。</p>
+<p><strong>无论是2PC还是3PC都不能保证分布式系统中的数据100%一致</strong>。</p>
+<h3 id="3-本地消息表"><a href="#3-本地消息表" class="headerlink" title="3.本地消息表"></a>3.本地消息表</h3><p>本地消息表的核心思想是将分布式事务拆分成本地事务进行处理。</p>
+<p>例如，可以在订单库新增一个消息表，将新增订单和新增消息放到一个事务里完成，然后通过轮询的方式去查询消息表，将消息推送到MQ，库存服务去消费MQ。</p>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li>订单服务，添加一条订单和一条消息，在一个事务里提交</li>
+<li>订单服务，使用定时任务轮询查询状态为未同步的消息表，发送到MQ，如果发送失败，就重试发送</li>
+<li>库存服务，接收MQ消息，修改库存表，需要保证幂等操作</li>
+<li>如果修改成功，调用rpc接口修改订单系统消息表的状态为已完成或者直接删除这条消息</li>
+<li>如果修改失败，可以不做处理，等待重试</li>
+</ol>
+<p>订单服务中的消息有可能由于业务问题会一直重复发送，所以为了避免这种情况可以记录一下发送次数，当达到次数限制之后报警，人工接入处理；库存服务需要保证幂等，避免同一条消息被多次消费造成数据不一致。</p>
+<p>本地消息表这种方案实现了最终一致性，需要在业务系统里增加消息表，业务逻辑中多一次插入的DB操作，所以性能会有损耗，而且最终一致性的间隔主要有定时任务的间隔时间决定</p>
+<h3 id="4-TCC"><a href="#4-TCC" class="headerlink" title="4.TCC"></a>4.TCC</h3><p><strong>TCC（Try Confirm Cancel）</strong> ，是两阶段提交的一个变种，针对每个操作，都需要有一个其对应的确认和取消操作，当操作成功时调用确认操作，当操作失败时调用取消操作，类似于二阶段提交，只不过是这里的提交和回滚是针对业务上的，所以基于TCC实现的分布式事务也可以看做是对业务的一种补偿机制。</p>
+<ul>
+<li><strong>Try</strong>：尝试待执行的业务。订单系统将当前订单状态设置为支付中，库存系统校验当前剩余库存数量是否大于1，然后将可用库存数量设置为库存剩余数量-1，。</li>
+<li><strong>Confirm</strong>：确认执行业务，如果Try阶段执行成功，接着执行Confirm 阶段，将订单状态修改为支付成功，库存剩余数量修改为可用库存数量。</li>
+<li><strong>Cancel</strong>：取消待执行的业务，如果Try阶段执行失败，执行Cancel 阶段，将订单状态修改为支付失败，可用库存数量修改为库存剩余数量。</li>
+</ul>
+<p><strong>TCC</strong> 是业务层面的分布式事务，保证最终一致性，不会一直持有资源的锁。</p>
+<ul>
+<li><strong>优点：</strong> 把数据库层的二阶段提交交给应用层来实现，规避了数据库的 2PC 性能低下问题</li>
+<li><strong>缺点</strong>：TCC 的 Try、Confirm 和 Cancel 操作功能需业务提供，开发成本高。TCC 对业务的侵入较大和业务紧耦合，需要根据特定的场景和业务逻辑来设计相应的操作</li>
+</ul>
+<h3 id="5-MQ消息事务"><a href="#5-MQ消息事务" class="headerlink" title="5.MQ消息事务"></a>5.MQ消息事务</h3><p>消息事务的原理是<strong>将两个事务通过消息中间件进行异步解耦</strong>。</p>
+<p>订单服务执行自己的本地事务，并发送MQ消息，库存服务接收消息，执行自己的本地事务，乍一看，好像跟本地消息表的实现方案类似，只是省去 了对本地消息表的操作和轮询发送MQ的操作，但实际上两种方案的实现是不一样的。</p>
+<p>消息事务一定要保证业务操作与消息发送的一致性，如果业务操作成功，这条消息也一定投递成功。</p>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li>发送prepare消息到消息中间件</li>
+<li>发送成功后，执行本地事务</li>
+<li>如果事务执行成功，则commit，消息中间件将消息下发至消费端</li>
+<li>如果事务执行失败，则回滚，消息中间件将这条prepare消息删除</li>
+<li>消费端接收到消息进行消费，如果消费失败，则不断重试</li>
+</ol>
+<p>消息事务依赖于消息中间件的事务消息，例如我们熟悉的RocketMQ就支持事务消息（半消息），也就是只有收到发送方确定才会正常投递的消息。</p>
+<p>这种方案也是实现了最终一致性，对比本地消息表实现方案，不需要再建消息表，对性能的损耗和业务的入侵更小</p>
+<h3 id="6-最大努力通知"><a href="#6-最大努力通知" class="headerlink" title="6.最大努力通知"></a>6.最大努力通知</h3><p>最大努力通知相比实现会简单一些，适用于一些对最终一致性实时性要求没那么高的业务，比如支付通知，短信通知。</p>
+<p>以支付通知为例，业务系统调用支付平台进行支付，支付平台进行支付，进行操作支付之后支付平台会去同步通知业务系统支付操作是否成功，如果不成功，会一直异步重试，但是会有一个最大通知次数，如果超过这个次数后还是通知失败，就不再通知，业务系统自行调用支付平台提供一个查询接口，供业务系统进行查询支付操作是否成功。</p>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li>业务系统调用支付平台支付接口， 并在本地进行记录，支付状态为支付中</li>
+<li>支付平台进行支付操作之后，无论成功还是失败，同步给业务系统一个结果通知</li>
+<li>如果通知一直失败则根据重试规则异步进行重试，达到最大通知次数后，不再通知</li>
+<li>支付平台提供查询订单支付操作结果接口</li>
+<li>业务系统根据一定业务规则去支付平台查询支付结果</li>
+</ol>
+<h2 id="3-Seata框架"><a href="#3-Seata框架" class="headerlink" title="3.Seata框架"></a>3.Seata框架</h2><h3 id="0-什么是Seata框架"><a href="#0-什么是Seata框架" class="headerlink" title="0.什么是Seata框架?"></a>0.什么是Seata框架?</h3><p><strong>Seata</strong> 的设计目标是对业务无侵入，因此它是从业务无侵入的两阶段提交（全局事务）着手，在传统的两阶段上进行改进，他把一个分布式事务理解成一个包含了若干分支事务的全局事务。而全局事务的职责是协调它管理的分支事务达成一致性，要么一起成功提交，要么一起失败回滚。</p>
+<h3 id="1-三个重要角色"><a href="#1-三个重要角色" class="headerlink" title="1.三个重要角色"></a>1.三个重要角色</h3><p><strong>Seata</strong> 中存在这么几种重要角色：</p>
+<ul>
+<li><strong>TC（Transaction Coordinator）</strong>：事务协调者。管理全局的分支事务的状态，用于全局性事务的提交和回滚。</li>
+<li><strong>TM（Transaction Manager）</strong>：事务管理者。用于开启、提交或回滚事务。</li>
+<li><strong>RM（Resource Manager）</strong>：资源管理器。用于分支事务上的资源管理，向 <strong>TC</strong> 注册分支事务，上报分支事务的状态，接收 <strong>TC</strong> 的命令来提交或者回滚分支事务。</li>
+</ul>
+<h3 id="2-Seata的执行流程"><a href="#2-Seata的执行流程" class="headerlink" title="2.Seata的执行流程"></a>2.Seata的执行流程</h3><p>Seata的整体执行流程涉及<strong>全局事务的开启、分支事务的注册、全局提交或回滚的发起，以及最终的提交或回滚执行</strong>。具体如下：</p>
+<ol>
+<li><strong>全局事务的开启</strong>：事务发起方（Transaction Manager, TM）向事务协调器（Transaction Coordinator, TC）申请开启一个全局事务。全局事务创建成功并生成唯一的全局事务标识（XID）。这个XID将在后续事务的服务调用链路的上下文中传播，通常是通过AOP（面向切面编程）实现。</li>
+<li><strong>分支事务的注册</strong>：资源管理器（Resource Manager, RM）向TC注册分支事务，汇报资源准备状况，并与XID进行绑定。这里的分支事务指的是分布式事务中每个独立的本地局部事务。</li>
+<li><strong>全局提交或回滚的发起</strong>：TM向TC发起XID下的所有分支事务的全局提交或回滚请求，这标志着事务一阶段的结束。</li>
+<li><strong>提交或回滚的决定</strong>：TC汇总所有分支事务的信息，根据这些信息决定分布式事务是提交还是回滚。</li>
+<li><strong>提交或回滚的执行</strong>：TC通知所有的RM提交或回滚资源，完成事务的二阶段，即事务的最终执行。</li>
+</ol>
+<p>总的来说，在AT模式下，Seata还会通过代理数据源<code>DataSourceProxy</code>对业务SQL进行解析，转换成<code>undolog</code>，并与业务SQL在一个事务内一起执行，以便在需要时能够进行回滚操作。整个过程中，全局事务的开始通常是在TM的业务代码中标记的，如通过<code>@GlobalTransactional</code>注解，而RM的注册则是在数据层开始的，首先进行数据操作并记录<code>undolog</code>数据，然后进行相应的事务操作。</p>
+<h4 id="Seata的AT模式的流程"><a href="#Seata的AT模式的流程" class="headerlink" title="Seata的AT模式的流程"></a>Seata的AT模式的流程</h4><p>我们当时是xx项目，主要使用到的seata的at模式解决的分布式事务</p>
+<p>seata的AT模型分为两个阶段：</p>
+<p>1、阶段一RM的工作：① 注册分支事务 ② 记录undo-log（数据快照）③ 执行业务sql并提交 ④报告事务状态</p>
+<p>2、阶段二提交时RM的工作：删除undo-log即可</p>
+<p>3、阶段二回滚时RM的工作：根据undo-log恢复数据到更新前</p>
+<p>at模式牺牲了一致性，保证了可用性，不过，它保证的是最终一致性</p>
+<h3 id="3-Seata的3种模式"><a href="#3-Seata的3种模式" class="headerlink" title="3.Seata的3种模式"></a>3.Seata的3种模式</h3><p>Seata支持的三种分布式事务模式包括<strong>XA模式、AT模式和TCC模式</strong>。具体如下：</p>
+<ol>
+<li><strong>XA模式</strong>：这是一种强一致性的两阶段提交协议，它要求数据库支持XA接口。在这种模式下，事务管理器会协调多个资源管理器（如数据库）来确保所有操作要么全部成功，要么全部失败。这种模式牺牲了一定的可用性，因为在整个事务过程中，参与的资源都会被锁定，直到事务完成。</li>
+<li><strong>AT模式</strong>：这是一种基于本地事务的结果回滚机制，它不需要业务代码进行任何修改，因此对业务无侵入性。在这种模式下，Seata会拦截SQL，并在事务提交时检查是否存在分支事务需要回滚。如果主事务成功提交，分支事务也会提交；如果主事务回滚，分支事务也会相应回滚。</li>
+<li><strong>TCC模式</strong>：这是一种应用层面的补偿事务模式，它需要业务代码实现Try、Confirm和Cancel三个操作。在事务开始时执行Try操作，如果事务可以执行，则执行Confirm操作，否则执行Cancel操作来回滚事务。TCC模式提供了更高的灵活性，允许业务逻辑在事务处理中有更多的控制权。</li>
+</ol>
+<p>综上所述，Seata通过这些模式为分布式系统提供了灵活的事务管理解决方案，使得在分布式环境下也能保证事务的ACID属性。在选择适合的事务模式时，需要根据具体的业务场景和系统需求来决定，以确保系统的一致性和可靠性。</p>
+<h3 id="4-Seata的执行原理"><a href="#4-Seata的执行原理" class="headerlink" title="4.Seata的执行原理"></a>4.Seata的执行原理</h3><p>Seata的实现原理主要包括三个核心组件：事务协调器（Transaction Coordinator）、事务管理器（Transaction Manager）和资源管理器（Resource Manager）。</p>
+<ul>
+<li><strong>事务协调器（Transaction Coordinator）</strong>：事务协调器负责协调和管理分布式事务的整个过程。它接收事务的开始和结束请求，并根据事务的状态进行协调和处理。事务协调器还负责记录和管理事务的全局事务 ID（Global Transaction ID）和分支事务 ID（Branch Transaction ID）。</li>
+<li><strong>事务管理器（Transaction Manager）</strong>：事务管理器负责全局事务的管理和控制。它协调各个分支事务的提交或回滚，并保证分布式事务的一致性和隔离性。事务管理器还负责与事务协调器进行通信，并将事务的状态变更进行持久化。</li>
+<li><strong>资源管理器（Resource Manager）</strong>：资源管理器负责管理和控制各个参与者（Participant）的事务操作。它与事务管理器进行通信，并根据事务管理器的指令执行相应的事务操作，包括提交和回滚。</li>
+</ul>
+<h1 id="6-分布式设计"><a href="#6-分布式设计" class="headerlink" title="6.分布式设计"></a>6.分布式设计</h1><h2 id="1-接口幂等性怎么实现"><a href="#1-接口幂等性怎么实现" class="headerlink" title="1.接口幂等性怎么实现?"></a>1.接口幂等性怎么实现?</h2><p>在分布式系统中，保证接口的幂等性是非常重要的，以下是实现接口幂等性的一些常见方法：</p>
+<ol>
+<li><p><strong>唯一请求标识</strong>：为每个请求分配一个唯一的标识符，这样系统就可以跟踪每个请求是否已经被处理过。</p>
+</li>
+<li><p><strong>先查询再操作</strong>：在保存数据的接口中，在<code>insert</code>前，先根据<code>requestId</code>等字段先<code>select</code>一下数据。如果该数据已存在，则直接返回，如果不存在，才执行 <code>insert</code>操作。</p>
+</li>
+<li><p><strong>使用redis+Token机制</strong>：</p>
+<p>嗯，我们当时有一个xx项目的下单操作，采用的token+redis实现的，流程是这样的</p>
+<p>第一次请求，也就是用户打开了商品详情页面，我们会发起一个请求，在后台生成一个唯一token存入redis，key就是用户的id，value就是这个token，同时把这个token返回前端</p>
+<p>第二次请求，当用户点击了下单操作会后，会携带之前的token，后台先到redis进行验证，如果存在token，可以执行业务，同时删除token；如果不存在，则直接返回，不处理业务，就保证了同一个token只处理一次业务，就保证了幂等性</p>
+</li>
+<li><p><strong>版本号控制</strong>：在数据更新操作中使用版本号，确保只有当版本号匹配时才进行更新，这样可以避免并发下的重复更新问题。</p>
+</li>
+<li><p><strong>加锁处理</strong>：在并发情况下，对操作过程加锁，确保同一时间只有一个请求能够执行操作。</p>
+</li>
+<li><p><strong>状态机控制</strong>：使用状态机来管理请求的处理流程，确保每个请求都按照预定的状态转移路径进行处理。</p>
+</li>
+</ol>
+<p>综上所述，可以有效地保证分布式接口的幂等性，从而避免因重复请求导致的数据不一致问题。需要注意的是，不是所有接口都需要保证幂等性，这需要根据具体的业务场景和需求来决定。在设计系统时，应该考虑到这些因素，并采取适当的措施来确保系统的健壮性和一致性。</p>
+<h1 id="7-分布式限流算法"><a href="#7-分布式限流算法" class="headerlink" title="7.分布式限流算法"></a>7.分布式限流算法</h1><p>比较常见的限流算法有漏桶算法和令牌桶算法</p>
+<h3 id="1-漏桶算法"><a href="#1-漏桶算法" class="headerlink" title="1.漏桶算法"></a>1.漏桶算法</h3><p>漏桶算法：</p>
+<ul>
+<li>工作原理：漏桶算法的思想是以恒定的速率来处理请求，如果请求进来的速率超过了处理速率，多余的请求会被丢弃或排队等待处理。</li>
+<li>应用场景：适合用于平滑流量，限制请求的速率，防止突发流量对系统造成影响。</li>
+<li><strong>流入</strong>：请求以任意速率进入漏桶，这模拟了客户端发起请求的行为。</li>
+<li><strong>流出</strong>：水从漏桶中以固定的速率流出，这代表了系统处理请求的能力。</li>
+<li><strong>丢弃规则</strong>：如果流入的速率过快，导致漏桶的水量超过了其容量，那么超出部分的请求会被丢弃，即被拒绝处理。</li>
+</ul>
+<h4 id="具体实现代码"><a href="#具体实现代码" class="headerlink" title="具体实现代码"></a>具体实现代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class LeakyBucket &#123;</span><br><span class="line">    private int capacity; // 漏桶容量</span><br><span class="line">    private int rate; // 漏桶流出速率</span><br><span class="line">    private int water; // 当前水量(漏桶中累积的请求数)</span><br><span class="line">    private long lastTime; // 上一次请求时间</span><br><span class="line"></span><br><span class="line">    public LeakyBucket(int capacity, int rate) &#123;</span><br><span class="line">        this.capacity = capacity;</span><br><span class="line">        this.rate = rate;</span><br><span class="line">        this.water = 0;</span><br><span class="line">        this.lastTime = System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public synchronized boolean allowRequest() &#123;</span><br><span class="line">        //首先获取当前时间，并计算出距离上一次请求的时间间隔</span><br><span class="line">        long currentTime = System.currentTimeMillis();</span><br><span class="line">        int elapsedTime = (int) (currentTime - lastTime);//时间间隔</span><br><span class="line">        lastTime = currentTime;</span><br><span class="line"></span><br><span class="line">        // 水量减少</span><br><span class="line">        //根据时间间隔和速率计算出漏桶中应该减少的水量，并将其从当前水量中减去</span><br><span class="line">        water = Math.max(0, water - elapsedTime * rate);</span><br><span class="line">        //判断当前水量是否小于容量</span><br><span class="line">        if (water &lt; capacity) &#123;</span><br><span class="line">            water++;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Main&#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        LeakyBucket bucket = new LeakyBucket(10, 2); // 容量为10，流出速率为2</span><br><span class="line">        for (int i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">            if (bucket.allowRequest()) &#123;</span><br><span class="line">                System.out.println(&quot;Allow request &quot; + i);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                System.out.println(&quot;Reject request &quot; + i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-令牌桶算法"><a href="#2-令牌桶算法" class="headerlink" title="2.令牌桶算法"></a>2.令牌桶算法</h3><p>令牌桶算法在桶中存储的是令牌，按照一定的速率生成令牌，每个请求都要先申请令牌，申请到令牌以后才能正常请求，也可以起到很好的限流作用</p>
+<h4 id="具体实现代码-1"><a href="#具体实现代码-1" class="headerlink" title="具体实现代码"></a>具体实现代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import java.util.concurrent.*;</span><br><span class="line">class TokenBucket &#123;</span><br><span class="line">    private final int capacity; // 令牌桶的容量</span><br><span class="line">    private final int tokensPerSecond; // 每秒生成的令牌数</span><br><span class="line">    private int tokens; // 当前令牌数</span><br><span class="line">    private final ScheduledExecutorService scheduler; // 定时任务调度器</span><br><span class="line"></span><br><span class="line">    // 构造函数，初始化令牌桶的容量、每秒生成的令牌数、当前令牌数和定时任务调度器</span><br><span class="line">    public TokenBucket(int capacity, int tokensPerSecond) &#123;</span><br><span class="line">        this.capacity = capacity;</span><br><span class="line">        this.tokensPerSecond = tokensPerSecond;</span><br><span class="line">        this.tokens = capacity;</span><br><span class="line">        this.scheduler = Executors.newScheduledThreadPool(1);//一个核心线程数</span><br><span class="line">        //通过调用scheduler.scheduleAtFixedRate()方法，</span><br><span class="line">        // 安排定时任务this::generateTokens以固定的时间间隔执行。该任务将在0秒后开始执行，并且每隔1秒执行一次。</span><br><span class="line">        scheduler.scheduleAtFixedRate(this::generateTokens, 0, 1, TimeUnit.SECONDS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //在TokenBucket类中的getToken()方法上添加了synchronized关键字，这是因为该方法涉及到对共享变量tokens的修改操作。当多个线程同时调用getToken()方法时，如果没有使用synchronized进行同步控制，可能会导致竞争条件（race condition）的发生，即多个线程同时读取和修改tokens的值，从而导致数据不一致的问题。</span><br><span class="line">    // 获取令牌的方法，如果当前令牌数大于0，则消耗一个令牌并返回true，否则返回false</span><br><span class="line">    public synchronized boolean getToken() &#123;</span><br><span class="line">        if (tokens &gt; 0) &#123;</span><br><span class="line">            tokens--;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 生成令牌的方法，每秒生成指定数量的令牌，但不超过令牌桶的容量</span><br><span class="line">    private void generateTokens() &#123;</span><br><span class="line">        int newTokens = tokens + tokensPerSecond;</span><br><span class="line">        if (newTokens &gt; capacity) &#123;</span><br><span class="line">            newTokens = capacity;</span><br><span class="line">        &#125;</span><br><span class="line">        tokens = newTokens;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Main&#123;</span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        TokenBucket tokenBucket = new TokenBucket(10, 2); // 创建一个容量为10，每秒生成2个令牌的令牌桶</span><br><span class="line">        for (int i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">            System.out.println(&quot;获取令牌结果：&quot; + tokenBucket.getToken()); // 尝试获取令牌并打印结果</span><br><span class="line">            Thread.sleep(500); // 等待500毫秒</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-漏桶算法和令牌桶算法的区别？什么时候用哪个？"><a href="#3-漏桶算法和令牌桶算法的区别？什么时候用哪个？" class="headerlink" title="3.漏桶算法和令牌桶算法的区别？什么时候用哪个？"></a>3.漏桶算法和令牌桶算法的区别？什么时候用哪个？</h3><p>漏桶算法和令牌桶算法都是用来进行流量控制的算法，它们的区别在于工作原理和应用场景。</p>
+<ol>
+<li>漏桶算法：<ul>
+<li>工作原理：漏桶算法的思想是以恒定的速率来处理请求，如果请求进来的速率超过了处理速率，多余的请求会被丢弃或排队等待处理。</li>
+<li>应用场景：适合用于平滑流量，限制请求的速率，防止突发流量对系统造成影响。</li>
+</ul>
+</li>
+<li>令牌桶算法：<ul>
+<li>工作原理：令牌桶算法在固定时间间隔内生成一定数量的令牌，每个请求需要消耗一个令牌才能被处理，如果没有足够的令牌，则请求会被延迟或拒绝。</li>
+<li>应用场景：适合用于限制最大并发数，平滑突发流量，保护系统免受瞬时高并发请求的影响。</li>
+</ul>
+</li>
+</ol>
+<p>一般来说，当需要控制请求的速率时，可以选择漏桶算法；而当需要限制最大并发数或平滑突发流量时，可以选择令牌桶算法。根据具体的应用场景和需求来选择合适的算法。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">范小勤</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/undefined/41895.html">http://example.com/undefined/41895.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">面试资料</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/favicon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/undefined/41682.html" title="设计模式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">设计模式</div></div></a></div><div class="next-post pull-right"><a href="/undefined/17374.html" title="JVM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JVM</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">范小勤</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">127</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">分布式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">1.分布式理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-CAP-%E7%90%86%E8%AE%BA"><span class="toc-number">2.1.</span> <span class="toc-text">1.CAP 理论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99CAP"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.什么时候CAP?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%97%A0%E6%B3%95%E5%90%8C%E6%97%B6%E4%BF%9D%E8%AF%81%E4%B8%80%E8%87%B4%E6%80%A7%E5%92%8C%E5%8F%AF%E7%94%A8%E6%80%A7%EF%BC%9F"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.为什么分布式系统中无法同时保证一致性和可用性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9D%83%E8%A1%A1"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.权衡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-BASE%E7%90%86%E8%AE%BA"><span class="toc-number">2.2.</span> <span class="toc-text">2.BASE理论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">2.分布式一致性算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Paxos%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">1.Paxos算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-number">3.1.1.</span> <span class="toc-text">算法流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Raft%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">2.Raft算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%88%86%E5%B8%83%E5%BC%8FID"><span class="toc-number">4.</span> <span class="toc-text">3.分布式ID</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E5%B8%83%E5%BC%8FID"><span class="toc-number">4.1.</span> <span class="toc-text">1.为什么需要分布式ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E5%93%AA%E4%BA%9B%E8%A6%81%E6%B1%82"><span class="toc-number">4.2.</span> <span class="toc-text">2.分布式 ID 需要满足哪些要求?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E5%B8%83%E5%BC%8F-ID-%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.3.</span> <span class="toc-text">3.分布式 ID 常见解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83uuid%E5%92%8C%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.0.1.</span> <span class="toc-text">比较uuid和雪花算法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">5.</span> <span class="toc-text">4.分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%9F"><span class="toc-number">5.1.</span> <span class="toc-text">1.为什么需要分布式锁？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%BA%94%E8%AF%A5%E5%85%B7%E5%A4%87%E5%93%AA%E4%BA%9B%E6%9D%A1%E4%BB%B6%EF%BC%9F"><span class="toc-number">5.2.</span> <span class="toc-text">2.分布式锁应该具备哪些条件？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">5.3.</span> <span class="toc-text">3.分布式锁的常见实现方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">5.分布式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%9F"><span class="toc-number">6.1.</span> <span class="toc-text">1.什么是分布式事务？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">6.2.</span> <span class="toc-text">2.分布式事务解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%882PC%EF%BC%89"><span class="toc-number">6.2.1.</span> <span class="toc-text">1.两阶段提交（2PC）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2PC%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">2PC的优点和缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XA%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.2.1.2.</span> <span class="toc-text">XA协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%883PC%EF%BC%89"><span class="toc-number">6.2.2.</span> <span class="toc-text">2.三阶段提交（3PC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8"><span class="toc-number">6.2.3.</span> <span class="toc-text">3.本地消息表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-TCC"><span class="toc-number">6.2.4.</span> <span class="toc-text">4.TCC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-MQ%E6%B6%88%E6%81%AF%E4%BA%8B%E5%8A%A1"><span class="toc-number">6.2.5.</span> <span class="toc-text">5.MQ消息事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%9C%80%E5%A4%A7%E5%8A%AA%E5%8A%9B%E9%80%9A%E7%9F%A5"><span class="toc-number">6.2.6.</span> <span class="toc-text">6.最大努力通知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Seata%E6%A1%86%E6%9E%B6"><span class="toc-number">6.3.</span> <span class="toc-text">3.Seata框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E4%BB%80%E4%B9%88%E6%98%AFSeata%E6%A1%86%E6%9E%B6"><span class="toc-number">6.3.1.</span> <span class="toc-text">0.什么是Seata框架?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E8%A7%92%E8%89%B2"><span class="toc-number">6.3.2.</span> <span class="toc-text">1.三个重要角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Seata%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">6.3.3.</span> <span class="toc-text">2.Seata的执行流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Seata%E7%9A%84AT%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">6.3.3.1.</span> <span class="toc-text">Seata的AT模式的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Seata%E7%9A%843%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-number">6.3.4.</span> <span class="toc-text">3.Seata的3种模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Seata%E7%9A%84%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="toc-number">6.3.5.</span> <span class="toc-text">4.Seata的执行原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">7.</span> <span class="toc-text">6.分布式设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89%E6%80%A7%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0"><span class="toc-number">7.1.</span> <span class="toc-text">1.接口幂等性怎么实现?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="toc-number">8.</span> <span class="toc-text">7.分布式限流算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">8.0.1.</span> <span class="toc-text">1.漏桶算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-number">8.0.1.1.</span> <span class="toc-text">具体实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95"><span class="toc-number">8.0.2.</span> <span class="toc-text">2.令牌桶算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="toc-number">8.0.2.1.</span> <span class="toc-text">具体实现代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%BC%8F%E6%A1%B6%E7%AE%97%E6%B3%95%E5%92%8C%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%93%AA%E4%B8%AA%EF%BC%9F"><span class="toc-number">8.0.3.</span> <span class="toc-text">3.漏桶算法和令牌桶算法的区别？什么时候用哪个？</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/undefined/7934.html" title="计网操作系统">计网操作系统</a><time datetime="2025-01-31T13:24:18.000Z" title="发表于 2025-01-31 21:24:18">2025-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/undefined/41682.html" title="设计模式">设计模式</a><time datetime="2025-01-31T13:21:41.000Z" title="发表于 2025-01-31 21:21:41">2025-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/undefined/41895.html" title="分布式">分布式</a><time datetime="2025-01-31T13:20:01.000Z" title="发表于 2025-01-31 21:20:01">2025-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/undefined/17374.html" title="JVM">JVM</a><time datetime="2025-01-31T13:17:52.000Z" title="发表于 2025-01-31 21:17:52">2025-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/undefined/52309.html" title="实现Trie(前缀树)">实现Trie(前缀树)</a><time datetime="2025-01-31T10:43:06.000Z" title="发表于 2025-01-31 18:43:06">2025-01-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 范小勤</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
